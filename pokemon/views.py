@@ -57,9 +57,6 @@ def agregarPokemon(request):
             #Pokemon.objects.create(nombre=nombre,tipo=tipo,ataque_base_1=ataque_base,ataque_especial_1=ataque_especial,dano_base=dano_base,defensa_base=defensa_base)
             messages.success(request, "Datos ingresados exitosamente")
             return datosPokemon(request)
-        else:
-            form = formulario_registro_pokemon()
-
     data = {'form' : form}
     return render(request, 'templatesPokedex/ingresoPkmn.html', data)
 
@@ -81,8 +78,6 @@ def actualizarPokemon(request,id):
             messages.success(request, "Datos actualizados exitosamente")
             return redirect('/')
         #return render(request, 'templatesPokedex/listarPkmn.html')
-        else:
-            form = formulario_registro_pokemon()
     data = {'form' : form}
     return render(request, 'templatesPokedex/ingresoPkmn.html', data)
 
