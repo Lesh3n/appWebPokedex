@@ -23,7 +23,7 @@ from pokemon import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.datosPokemon),
-    path('formulario/',views.formPokemon),
+    path('formulario/',views.agregarPokemon),
     #Actualizar
     path('eliminarPkmn/<int:id>', views.eliminarPokemon),
     #Eliminar

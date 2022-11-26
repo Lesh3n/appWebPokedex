@@ -43,7 +43,7 @@
   <div class="container mt-5">
     <div class="alert alert-success display-1 text-center">POKÉMONS REGISTRADOS</div>
     {% if pokemons %}
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>ID</th>
@@ -57,7 +57,7 @@
           <th>Eliminar</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
         {% for pkmn in pokemons %}
         <tr>
           <td scope="row">{{ pkmn.id }}</td>
