@@ -1,9 +1,18 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+
+#Modelos
 from pokemon.models import Pokemon
+from pokemon.models import PokeMart
+
+#Formularios
 from . import forms
 from pokemon.forms import formulario_registro_pokemon
+from pokemon.forms import FormPokeMart
+
+#Mensajes de error
 from django.contrib import messages
+
 # Create your views here.fffff
 '''
 Esto sirvio en un inicio para probar si la web funcionaba correctamente.
@@ -21,11 +30,9 @@ TODO: Cambiar nombres a variables que son confusos a simple vista, se requiere a
 '''
 
 
-
-
-
-
-
+'''
+Aquí va el render de la lista de Pokemons, también el render del actualizar, borrar e ingresar datos
+'''
 def renderListaPkmn(request):
     return render(request, 'templatesPokedex/listarPkmn.html')
 
@@ -82,3 +89,43 @@ def actualizarPokemon(request,id):
     return render(request, 'templatesPokedex/ingresoPkmn.html', data)
 
 
+
+'''
+Vistas de POKEMART
+'''
+
+
+def listadoProductos(request):
+    productos = PokeMart.objects.all()
+    data = {'productos': productos}
+    return render(request, 'templatesPokemart/listadoProductos.html', data)
+
+
+def agregarProducto(request):
+    form = FormPokeMart()
+    if request.method == 'POST':
+        form = FormPokeMart(request.POST)
+        if form.is_valid():
+            form.save()
+        return listadoProductos(request)
+
+    data = {'form': form}
+    return render(request, 'templatesPokemart/agregarProductos.html', data)
+
+
+def eliminarProducto(request, id):
+    productos = PokeMart.objects.get(id=id)
+    productos.delete()
+    return listadoProductos(request)
+
+
+def actualizarProducto(request, id):
+    productos = PokeMart.objects.get(id = id)
+    form = FormPokeMart(instance=productos)
+    if request.method == 'POST':
+        form = FormPokeMart(request.POST, instance=productos)
+        if form.is_valid():
+            form.save()
+        return listadoProductos(request)
+    data = {'form': form}
+    return render(request, 'PokeMartApp/agregarProductos.html', data)

@@ -27,5 +27,12 @@ urlpatterns = [
     #Actualizar
     path('eliminarPkmn/<int:id>', views.eliminarPokemon),
     #Eliminar
-    path('actualizarPkmn/<int:id>', views.actualizarPokemon)
+    path('actualizarPkmn/<int:id>', views.actualizarPokemon),
+    #URLS PokeMart
+    path('listadoProductos/', views.listadoProductos),
+    path('agregarProducto/', views.agregarProducto),
+    path('eliminarProducto/<id>', views.eliminarProducto),
+    path('actualizarProducto/<id>', views.actualizarProducto),
+
+
 ]

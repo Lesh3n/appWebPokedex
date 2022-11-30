@@ -9,3 +9,17 @@ class Pokemon(models.Model):
     ataque_especial_1 = models.CharField(max_length=70,blank=False)
     dano_base = models.IntegerField(blank=False)
     defensa_base = models.IntegerField(blank=False)
+
+
+'''
+Modelo Pokemart
+'''
+class PokeMart(models.Model):
+    nombreObjeto = models.CharField(max_length=50)
+    precio = models.IntegerField()
+    cantidad = models.IntegerField()
+    lugar = models.CharField(max_length=50)
+    tipo = models.CharField(max_length=50)
+    fechaCompra = models.DateField()
+
+#TODO: Hacer el modelo de Entrenador para la inserción de datos, borrado y vista de los datos.

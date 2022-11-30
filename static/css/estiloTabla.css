@@ -1,0 +1,75 @@
+
+.Titulo{
+    color: #7ec9f5;
+    font-size: 30px;
+    text-align: center;
+    font-family: Helvetica;
+    font-weight: bold;
+    margin-bottom: 50px;
+    margin-top: 100px;
+
+}
+
+
+.btnAgregar{    
+    background-color: #7ec9f5;
+    text-align: center;
+    color: aliceblue;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Helvetica;
+    margin-top: 50px;
+    width: 20%;
+}
+
+.btnVolver{
+    background-color: #2f4d5e;
+    text-align: center;
+    color: aliceblue;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Helvetica;
+    margin-top: 50px;
+    width: 20%;
+}
+
+.btnVerde{
+    background-color: #315f44;
+    text-align: center;
+    color: aliceblue;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Helvetica;
+    margin-top: 50px;
+    width: 20%;
+}
+
+
+.btnRojo{
+    background-color: #5e2323;
+    text-align: center;
+    color: aliceblue;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    font-family: Helvetica;
+    margin-top: 50px;
+    width: 20%;
+}
+
+.NoHay{
+    color: #344c5a;
+    font-size: 15px;
+    text-align: center;
+    font-family: Helvetica;
+    font-weight: bold;
+    margin-bottom: 50px;
+
+}
