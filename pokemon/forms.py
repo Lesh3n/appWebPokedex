@@ -1,6 +1,9 @@
 from django import forms
 from pokemon.models import Pokemon
 from pokemon.models import PokeMart
+from pokemon.models import Entrenador
+
+#Formulario hecho.
 
 '''
 Esta clase genera el formulario de registro de los pokemon. Al inicio de esta, se declaran las variables de los campos junto con su tipo de dato.
@@ -66,7 +69,26 @@ class FormPokeMart(forms.ModelForm):
     lugar = forms.CharField(min_length=3, max_length=50)
     tipo = forms.CharField(min_length=3, max_length=50)
     fechaCompra = forms.DateField()
+
     class Meta:
         model = PokeMart
         fields = '__all__'
 
+
+
+class formulario_registro_entrenador(forms.ModelForm):
+    nombre = forms.CharField(max_length=50)
+    sexo = forms.CharField(max_length=1)
+    region = forms.CharField(max_length=50)
+    objeto_mas_usado = forms.IntegerField()
+    pokemon_favorito = forms.IntegerField()
+
+    class Meta:
+        model = Entrenador
+        fields = ['nombre','sexo','region','objeto_mas_usado','pokemon_favorito']
+
+    nombre.widget.attrs['class'] = 'form-control'
+    sexo.widget.attrs['class'] = 'form-control'
+    region.widget.attrs['class'] = 'form-control'
+    objeto_mas_usado.widget.attrs['class'] = 'form-control'
+    pokemon_favorito.widget.attrs['class'] = 'form-control'

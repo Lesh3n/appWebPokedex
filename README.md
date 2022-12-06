@@ -4,5 +4,6 @@ Kevin: Modificar ListarAgregarEntrenador.html para adaptarlo a lo que se tendrá
 Modificar pokedex/urls.py
 Modificar admin.py
 
-Andrés: Modificar Models
-Modificar views
+Andrés: Modificar Models ----> Terminado, falta modificarlo según sea necesario.
+Modificar Forms ----> Terminado.
+Modificar views ----> Por realizar.
