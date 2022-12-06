@@ -36,7 +36,6 @@ class Pokemon(models.Model):
     ataque_especial_1 = models.CharField(max_length=70,blank=False)
     dano_base = models.IntegerField(blank=False)
     defensa_base = models.IntegerField(blank=False)
-    propietario = models.CharField(max_length=80, blank=False)
 
 
 '''
@@ -73,6 +72,8 @@ class Entrenador(models.Model):
     nombre = models.CharField(max_length=50)
     sexo = models.CharField(max_length=1)
     Region = models.CharField(max_length=50)
-    objeto_mas_usado = models.ForeignKey(PokeMart, on_delete=models.CASCADE)
-    pokemon_favorito = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
+    id_objeto_mas_usado = models.ForeignKey(PokeMart, on_delete=models.CASCADE)
+    nombre_objeto_mas_usado = models.CharField(max_length=80, blank=False)
+    id_pokemon_favorito = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
+    nombre_pokemon_favorito = models.CharField(max_length=60, blank=False)
 
