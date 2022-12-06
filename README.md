@@ -6,4 +6,8 @@ Modificar admin.py
 
 Andrés: Modificar Models ----> Terminado, falta modificarlo según sea necesario.
 Modificar Forms ----> Terminado.
-Modificar views ----> Por realizar.
+Modificar views ----> Terminado.
+
+
+
+FALTAN LAS RELACIONES Y RESTRICCIONES.
