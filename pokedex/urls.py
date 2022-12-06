@@ -22,17 +22,12 @@ from pokemon import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.datosPokemon),
-    path('formulario/',views.agregarPokemon),
-    #Actualizar
+    path('', views.listarAgregarPokemon),
     path('eliminarPkmn/<int:id>', views.eliminarPokemon),
-    #Eliminar
     path('actualizarPkmn/<int:id>', views.actualizarPokemon),
     #URLS PokeMart
-    path('listadoProductos/', views.listadoProductos),
-    path('agregarProducto/', views.agregarProducto),
+    path('listadoAgregarProducto/', views.listadoAgregarProducto),
     path('eliminarProducto/<id>', views.eliminarProducto),
     path('actualizarProducto/<id>', views.actualizarProducto),
-
-
+    #URLS Entrenador
 ]

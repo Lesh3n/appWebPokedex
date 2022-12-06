@@ -23,3 +23,15 @@ class PokeMart(models.Model):
     fechaCompra = models.DateField()
 
 #TODO: Hacer el modelo de Entrenador para la inserción de datos, borrado y vista de los datos.
+
+#K: Modelo de Entrenador
+class Entrenador(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    apellido = models.CharField(max_length=50)
+    edad = models.IntegerField()
+    sexo = models.CharField(max_length=50)
+    Region = models.CharField(max_length=50)
+    objetos = models.ForeignKey(PokeMart, on_delete=models.CASCADE)
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
+

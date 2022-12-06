@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="navbar">
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+              <img src="{%static 'img/logo.svg.png' %}" alt="Logo" width="30" height="30"
+                class="d-inline-block align-text-top">
+              ¡Bienvenido a tu pokédex entrenador!
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Ver Pokémons</a>
+                </li>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/listadoAgregarProducto/">Ver Productos</a>
+              </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    <h1 class="Titulo ">Agrega un Producto!</h1>
+    <form method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="Agregar" class="btn1">
+    </form>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Pantidad</th>
+                <th>Lugar</th>
+                <th>Tipo</th>
+                <th>FechaCompra</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        {% for objeto in pokemart %}
+        <tr>
+            <td>{{objeto.nombreObjeto}}</td>
+            <td>{{objeto.precio}}</td>
+            <td>{{objeto.cantidad}}</td>
+            <td>{{objeto.lugar}}</td>
+            <td>{{objeto.tipo}}</td>
+            <td>{{objeto.fechaCompra}}</td>
+            <td><a href="/eliminarProducto/{{ objeto.id }}" class="btnRojo">Eliminar<i class="bi bi-pencil"></i></td>
+            <td><a href="/actualizarProducto/{{ objeto.id }}" class="btnVerde">Actualizar<i class="bi bi-pencil"></i></td>
+        </tr>
+        {% endfor %}"
+    </tbody>
+    </table>
+
+    
+</body>
+</html>
