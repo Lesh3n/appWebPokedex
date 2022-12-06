@@ -4,40 +4,17 @@ from django.http import HttpResponse
 #Modelos
 from pokemon.models import Pokemon
 from pokemon.models import PokeMart
+from pokemon.models import Entrenador
 
 #Formularios
-from . import forms
 from pokemon.forms import formulario_registro_pokemon
 from pokemon.forms import FormPokeMart
+from pokemon.forms import formulario_registro_entrenador
 
 #Mensajes de error
 from django.contrib import messages
 
-# Create your views here.fffff
-'''
-Esto sirvio en un inicio para probar si la web funcionaba correctamente.
-'''
-#def display(request):
-#    return HttpResponse("<h1>Estás en el registro de PKMN's</h1>")
 
-
-
-'''
-Aquí va el render de la lista de Pokemons, también el render del actualizar, borrar e ingresar datos
-'''
-
-#Este era el "index"
-'''def renderListaPkmn(request):
-    return render(request, 'templatesPokedex/listarPkmn.html')'''
-
-#Esta es la lista. (No se va a usar)
-'''def datosPokemon(request):
-    pokemons = Pokemon.objects.all()
-    data = {'pokemons' : pokemons}
-    return render(request, 'templatesPokedex/listarPkmn.html', data)'''''
-
-
-#Este tiene que ser modificado para que tener el form junto a la tabla
 def listarAgregarPokemon(request):
     if request.method == 'POST':
         form = formulario_registro_pokemon(request.POST)
@@ -49,14 +26,14 @@ def listarAgregarPokemon(request):
     context = {'pokemons' : pokemons, 'form' : form}
     return render(request, 'templatesPokedex/ListarAgregarPokemon.html', context)
 
-#Ta Joya
-def eliminarPokemon(request, id):
+
+def eliminarPokemon(id):
     pokemon = Pokemon.objects.get(id = id)
     pokemon.delete()
     return redirect('/')
 
 
-#Ta Joya
+
 def actualizarPokemon(request,id):
     pokemon = Pokemon.objects.get(id = id)
     form = formulario_registro_pokemon(instance=pokemon)
@@ -66,7 +43,6 @@ def actualizarPokemon(request,id):
             form.save()
             messages.success(request, "Datos actualizados exitosamente")
             return redirect('/')
-        #return render(request, 'templatesPokedex/listarPkmn.html')
     data = {'form' : form}
     return render(request, 'templatesPokedex/ListarAgregarPokemon.html', data)
 
@@ -75,7 +51,6 @@ def actualizarPokemon(request,id):
 '''
 Vistas de POKEMART
 '''
-
 
 def listadoAgregarProducto(request):
     form = FormPokeMart()
@@ -89,7 +64,7 @@ def listadoAgregarProducto(request):
     return render(request, 'templatesPokemart/ListarAgregarProductos.html', context)
 
 
-def eliminarProducto(request, id):
+def eliminarProducto(id):
     productos = PokeMart.objects.get(id=id)
     productos.delete()
     return redirect('/listadoAgregarProducto')
@@ -105,3 +80,39 @@ def actualizarProducto(request, id):
         return redirect('/listadoAgregarProducto')
     data = {'form': form}
     return render(request, 'templatesPokemart/ListarAgregarProductos.html', data)
+
+
+'''
+View entrenadores
+'''
+
+def listar_agregar_entrenador(request):
+    if request.method == "POST":
+        formulario = formulario_registro_entrenador(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.succes(request, "Entrenador registrado con exito!")
+    formulario = formulario_registro_entrenador()
+    entrenador = Entrenador.objects.all()
+    context = {'formulario': formulario, 'entrenador': entrenador}
+    return render(request, 'templateEntrenador/ListarAgregarEntrenador.html', context)
+
+
+def eliminar_entrenador(id):
+    entrenador = Entrenador.objects.get(id = id)
+    entrenador.delete()
+    #Poner el enlace del archivo urls entre las comillas.
+    return redirect('')
+
+
+def actualizar_entrenador(request, id):
+    entrenador = Entrenador.objects.get(id = id)
+    formulario = formulario_registro_entrenador(instance = entrenador)
+    if request.method == 'POST':
+        formulario = formulario_registro_entrenador(request.POST, instance = entrenador)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success('Entrenador actualizado exitosamente!')
+        return redirect('/rutaDelTemplate')
+    datos = {'formulario': formulario}
+    return render(request, 'templateEntrenador/ListarAgregarEntrenador.html', datos)
