@@ -1,6 +1,5 @@
-HACER VALIDACIONES
 
-Kevin: Modificar ListarAgregarEntrenador.html para adaptarlo a lo que se tendrá en la tabla ---> Ayuda
+Kevin: Modificar ListarAgregarEntrenador.html para adaptarlo a lo que se tendrá en la tabla ---> LISTO
 Modificar pokedex/urls.py ---> Listo
 Modificar admin.py ---> Listo
 
@@ -10,4 +9,4 @@ Modificar views ----> Terminado.
 
 
 
-FALTAN RESTRICCIONES, PONER UN SELECT PARA LAS ID, MOSTRAR LOS NOMBRES DE LOS PKMN Y PROBAR EL PROGRAMA EN GENERAL.
+APLICACIÓN 100% TERMINADA Y LISTA PARA EVALUAR.
