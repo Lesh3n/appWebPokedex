@@ -27,16 +27,19 @@
               <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/listadoAgregarProducto/">Ver Productos</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/ListarAgregarEntrenador">Ver Entrenadores</a>
+              </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
-    <h1 class="Titulo ">Agrega un Producto!</h1>
-    <form method="post">
+    <h1 class="text-center">Agrega un Producto!</h1>
+    <form method="post" class="text-center">
         {{form.as_p}}
         {% csrf_token %}
-        <input type="submit" value="Agregar" class="btn1">
+        <input type="submit" value="Agregar" class="btn btn-primary text-center">
     </form>
     <table class="table table-hover">
         <thead>

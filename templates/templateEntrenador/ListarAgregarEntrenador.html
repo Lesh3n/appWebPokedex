@@ -36,50 +36,55 @@
           </div>
         </nav>
       </div>
+    <div>
+        <form method="post">
+            {{formulario.as_p}}
+            {% csrf_token %}
+            <input type="submit" value="Agregar" class="btn btn-primary text-center">
+        </form>
+    </div>
     <div class="container mt-5">
-        <div class="alert alert-success display-1 text-center">POKÉMONS REGISTRADOS</div>
-        {% if pokemons %}
-        <table class="table table-hover">
+        <div class="alert alert-success display-1 text-center">Bienvenido Entrenador</div>
+        {% if entrenador %}
+        <table class="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Nombre</th>
-              <th>Tipo</th>
-              <th>Ataque Base</th>
-              <th>Ataque Especial</th>
-              <th>Daño Base</th>
-              <th>Defensa Base</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
+              <th>Sexo</th>
+              <th>Region</th>
+              <th>ID Objeto mas usado</th>
+              <th>Nombre Objeto Favorito</th>
+              <th>ID Pokemon Favorito</th>
+              <th>Nombre Pokemon Favorito</th>
             </tr>
           </thead>
-          <tbody class="table-group-divider">
-            {% for pkmn in pokemons %}
+          {% for entrenador in entrenador %}
+          <tbody>
             <tr>
-              <td scope="row">{{ pkmn.id }}</td>
-              <td>{{ pkmn.nombre }}</td>
-              <td>{{ pkmn.tipo }}</td>
-              <td>{{ pkmn.ataque_base_1 }}</td>
-              <td>{{ pkmn.ataque_especial_1 }}</td>
-              <td>{{ pkmn.dano_base }}</td>
-              <td>{{ pkmn.defensa_base }}</td>
-              <td><a href="/actualizarPkmn/{{ pkmn.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></td>
-                <td><a href="/eliminarPkmn/{{ pkmn.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></td>
-            </tr>
-            {% endfor %}
-          </tbody>
+              <td>{{entrenador.nombre}}</td>
+              <td>{{entrenador.sexo}}</td>
+              <td>{{entrenador.Region}}</td>
+              {% for objeto in pokemart %}
+                <td>{{objeto.id}}</td>
+                <td>{{objeto.nombreObjeto}}</td>
+              {% endfor %}
+              {% for pokemon in pokemon %}
+                <td>{{pokemon.id}}</td>
+                <td>{{pokemon.nombre}}</td>
+              {% endfor %}
+              <td>
+                <a href="/actualizarEntrenador/{{entrenador.id}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                <a href="/eliminarEntrenador/{{entrenador.id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+              </td>
+          </tbody>  
+          {% endfor %}
         </table>
         {% else %}
         <div class="alert alert-primary" role="alert">
-          <strong>No hay Pokémons registrados :(</strong>
+          <strong>No hay Entrenadores registrados :(</strong>
         </div>
         {% endif %}
       </div>
-    <form method="post">
-        {{form.as_p}}
-        {% csrf_token %}
-        <input type="submit" value="Agregar" class="btn1">
-    </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>

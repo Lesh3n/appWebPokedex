@@ -29,5 +29,9 @@ urlpatterns = [
     path('listadoAgregarProducto/', views.listadoAgregarProducto),
     path('eliminarProducto/<id>', views.eliminarProducto),
     path('actualizarProducto/<id>', views.actualizarProducto),
-    #URLS Entrenador
+    #URLS Entrenador 
+    path('ListarAgregarEntrenador/', views.listar_agregar_entrenador),
+    path('eliminarEntrenador/<id>', views.eliminar_entrenador),
+    path('actualizarEntrenador/<id>', views.actualizar_entrenador),
+
 ]

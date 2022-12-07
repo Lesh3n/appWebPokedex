@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 #Modelos hechos, modificar en caso de ser necesario.
 
@@ -71,9 +72,13 @@ class Entrenador(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
     sexo = models.CharField(max_length=1)
-    Region = models.CharField(max_length=50)
+    Region = models.CharField(max_length=50, blank=False)
     id_objeto_mas_usado = models.ForeignKey(PokeMart, on_delete=models.CASCADE)
     nombre_objeto_mas_usado = models.CharField(max_length=80, blank=False)
     id_pokemon_favorito = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
     nombre_pokemon_favorito = models.CharField(max_length=60, blank=False)
+
+    def __str__(self):
+        return self.nombre_objeto_mas_usado
+
 

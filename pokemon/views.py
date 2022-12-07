@@ -27,7 +27,7 @@ def listarAgregarPokemon(request):
     return render(request, 'templatesPokedex/ListarAgregarPokemon.html', context)
 
 
-def eliminarPokemon(id):
+def eliminarPokemon(request, id):
     pokemon = Pokemon.objects.get(id = id)
     pokemon.delete()
     return redirect('/')
@@ -64,10 +64,10 @@ def listadoAgregarProducto(request):
     return render(request, 'templatesPokemart/ListarAgregarProductos.html', context)
 
 
-def eliminarProducto(id):
+def eliminarProducto(request, id):
     productos = PokeMart.objects.get(id=id)
     productos.delete()
-    return redirect('/listadoAgregarProducto')
+    return redirect('/ListarAgregarProductos')
 
 
 def actualizarProducto(request, id):
@@ -77,7 +77,7 @@ def actualizarProducto(request, id):
         form = FormPokeMart(request.POST, instance=productos)
         if form.is_valid():
             form.save()
-        return redirect('/listadoAgregarProducto')
+        return redirect('/ListarAgregarProductos')
     data = {'form': form}
     return render(request, 'templatesPokemart/ListarAgregarProductos.html', data)
 
@@ -91,18 +91,24 @@ def listar_agregar_entrenador(request):
         formulario = formulario_registro_entrenador(request.POST)
         if formulario.is_valid():
             formulario.save()
-            messages.succes(request, "Entrenador registrado con exito!")
     formulario = formulario_registro_entrenador()
     entrenador = Entrenador.objects.all()
-    context = {'formulario': formulario, 'entrenador': entrenador}
+    pokemon = Pokemon.objects.all()
+    pokemart = PokeMart.objects.all()
+    context = {
+        'formulario': formulario, 
+        'entrenador': entrenador,
+        'pokemon' : pokemon,
+        'pokemart' : pokemart
+        }
     return render(request, 'templateEntrenador/ListarAgregarEntrenador.html', context)
 
 
-def eliminar_entrenador(id):
+def eliminar_entrenador(request, id):
     entrenador = Entrenador.objects.get(id = id)
     entrenador.delete()
     #Poner el enlace del archivo urls entre las comillas.
-    return redirect('')
+    return redirect('/ListarAgregarEntrenador')
 
 
 def actualizar_entrenador(request, id):
@@ -112,7 +118,6 @@ def actualizar_entrenador(request, id):
         formulario = formulario_registro_entrenador(request.POST, instance = entrenador)
         if formulario.is_valid():
             formulario.save()
-            messages.success('Entrenador actualizado exitosamente!')
-        return redirect('/rutaDelTemplate')
+        return redirect('/actualizarEntrenador')
     datos = {'formulario': formulario}
     return render(request, 'templateEntrenador/ListarAgregarEntrenador.html', datos)

@@ -1,3 +1,4 @@
+from urllib import request
 from django import forms
 from pokemon.models import Pokemon
 from pokemon.models import PokeMart
@@ -27,13 +28,49 @@ class formulario_registro_pokemon(forms.ModelForm):
         input_nombre = self.cleaned_data['nombre']
         if len(input_nombre) < 1:
             raise forms.ValidationError("No se ha ingresado un nombre de Pokemon!")
+        if input_nombre != str(input_nombre):
+            raise forms.ValidationError("El tipo de dato ingresado no corresponde a lo pedido!")
         return input_nombre
 
     def clean_tipo(self):
         input_tipo = self.cleaned_data['tipo']
         if len(input_tipo) < 1:
             raise forms.ValidationError("No se ha ingresado un tipo de Pokemon!")
+        if input_tipo != str(input_tipo):
+            raise forms.ValidationError("El tipo de dato ingresado no corresponde a lo pedido!")
         return input_tipo
+
+    def clean_ataque_base_1(self):
+        input_ataque_base_1 = self.cleaned_data['ataque_base_1']
+        if len(input_ataque_base_1) < 1:
+            raise forms.ValidationError("No se ha ingresado un poder de ataque base!")
+        if input_ataque_base_1 != str(input_ataque_base_1):
+            raise forms.ValidationError("Solo te estoy pidiendo el ataque NO el daño de ataque...")
+        return input_ataque_base_1
+
+    def clean_ataque_especial_1(self):
+        input_ataque_especial_1 = self.cleaned_data['ataque_especial_1']
+        if len(input_ataque_especial_1) < 1:
+            raise forms.ValidationError("No se ha ingresado un poder de ataque especial!")
+        if input_ataque_especial_1 != str(input_ataque_especial_1):
+            raise forms.ValidationError("Solo te estoy pidiendo el ataque especial NO el daño NUMERICO de ataque...")
+        return input_ataque_especial_1
+
+    def clean_dano_base(self):
+        input_dano_base = self.cleaned_data['dano_base']
+        if len(input_dano_base) < 1:
+            raise forms.ValidationError("No se ha ingresado un numero de daño!")
+        if input_dano_base != int(input_dano_base):
+            raise forms.ValidationError("Te estoy pidiendo el daño en números, no letras -_-")
+        return input_dano_base
+
+    def clean_defensa_base(self):
+        input_defensa_base = self.cleaned_data['defensa_base']
+        if len(input_defensa_base) < 1:
+            raise forms.ValidationError("No se ha ingresado un numero de defensa!")
+        if input_defensa_base != int(input_defensa_base):
+            raise forms.ValidationError("Te estoy pidiendo la defensa en números, no letras -_-")
+        return input_defensa_base
 
 
     nombre.widget.attrs['class'] = 'form-control'
@@ -49,6 +86,7 @@ class formulario_registro_pokemon(forms.ModelForm):
 
 
     '''
+    Esto es para otras validaciones jejeje
     def clean(self):
         user_clean_data = super().clean()
 
@@ -74,21 +112,53 @@ class FormPokeMart(forms.ModelForm):
         model = PokeMart
         fields = '__all__'
 
+    def clean_nombre(self):
+        input_nombre = self.cleaned_data['nombreObjeto']
+        if len(input_nombre) < 1:
+            raise forms.ValidationError("No se ha ingresado un nombre de Pokemon!")
+        if input_nombre != str(input_nombre):
+            raise forms.ValidationError("El tipo de dato ingresado no corresponde a lo pedido!")
+        return input_nombre
+
+    def clean_precio(self):
+        input_precio = self.cleaned_data['precio']
+        if len(input_precio) < 1:
+            raise forms.ValidationError("No se ha ingresado un precio!")
+        if input_precio != int(input_precio):
+            raise forms.ValidationError("El tipo de dato ingresado no corresponde a lo pedido!")
+        return input_precio
+
+    def clean_cantidad(self):
+        input_cantidad = self.cleaned_data['cantidad']
+        if len(input_cantidad) < 1:
+            raise forms.ValidationError("No se ha ingresado una cantidad de producto!")
+        if input_cantidad != str(input_cantidad):
+            raise forms.ValidationError("Tipo de dato incorrecto, se espera un dato numerico.")
+        return input_cantidad
+
+
+    def clean_fecha_compra(self):
+        input_fecha_compra = self.cleaned_data['fechaCompra']
+        if len(input_fecha_compra) < 10:
+            raise forms.ValidationError("Estás seguro que estás ingresando una fecha? Formato: AAAA-MM-DD")
+        return input_fecha_compra
+
+
+
 
 
 class formulario_registro_entrenador(forms.ModelForm):
     nombre = forms.CharField(max_length=50)
     sexo = forms.CharField(max_length=1)
     region = forms.CharField(max_length=50)
-    objeto_mas_usado = forms.IntegerField()
-    pokemon_favorito = forms.IntegerField()
+    id_pokemon_favorito = Pokemon(id)
+    id_objeto_mas_usado = PokeMart(id)
+    
 
     class Meta:
         model = Entrenador
-        fields = ['nombre','sexo','region','objeto_mas_usado','pokemon_favorito']
-
+        fields = ['nombre','sexo','region','id_pokemon_favorito','id_objeto_mas_usado']
+        
     nombre.widget.attrs['class'] = 'form-control'
     sexo.widget.attrs['class'] = 'form-control'
     region.widget.attrs['class'] = 'form-control'
-    objeto_mas_usado.widget.attrs['class'] = 'form-control'
-    pokemon_favorito.widget.attrs['class'] = 'form-control'

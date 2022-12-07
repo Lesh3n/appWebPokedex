@@ -1,8 +1,8 @@
 HACER VALIDACIONES
 
-Kevin: Modificar ListarAgregarEntrenador.html para adaptarlo a lo que se tendrá en la tabla 
-Modificar pokedex/urls.py
-Modificar admin.py
+Kevin: Modificar ListarAgregarEntrenador.html para adaptarlo a lo que se tendrá en la tabla ---> Ayuda
+Modificar pokedex/urls.py ---> Listo
+Modificar admin.py ---> Listo
 
 Andrés: Modificar Models ----> Terminado, falta modificarlo según sea necesario.
 Modificar Forms ----> Terminado.
