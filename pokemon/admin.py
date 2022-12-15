@@ -1,7 +1,6 @@
 from django.contrib import admin
-from pokemon.models import Pokemon
-from pokemon.models import PokeMart
-from pokemon.models import Entrenador
+from api.models import Pokemon, PokeMart, Entrenador
+
 #Esta clase sirve para mostrar los pokémon en la interfaz de Django Admin
 class PokemonAdmin(admin.ModelAdmin):
     list_display = ['id','nombre','tipo','ataque_base_1','ataque_especial_1','dano_base','defensa_base']

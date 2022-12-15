@@ -2,17 +2,20 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 #Modelos
-from pokemon.models import Pokemon
-from pokemon.models import PokeMart
-from pokemon.models import Entrenador
+from api.models import Pokemon, PokeMart, Entrenador
+
 
 #Formularios
-from pokemon.forms import formulario_registro_pokemon
-from pokemon.forms import FormPokeMart
-from pokemon.forms import formulario_registro_entrenador
+from pokemon.forms import formulario_registro_pokemon, FormPokeMart, formulario_registro_entrenador
+
 
 #Mensajes de error
 from django.contrib import messages
+
+'''
+TODO: EDITAR LAS VIEWS PARA QUE SE COMUNIQUEN CON EL VIEWS DE LA API Y QUE ESTA PUEDA HACER LOS GET
+POST, PUT Y DELETE.
+'''
 
 
 def listarAgregarPokemon(request):

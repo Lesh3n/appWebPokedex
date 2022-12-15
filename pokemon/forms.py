@@ -1,10 +1,8 @@
 from urllib import request
 from django import forms
-from pokemon.models import Pokemon
-from pokemon.models import PokeMart
-from pokemon.models import Entrenador
+from api.models import Pokemon, PokeMart, Entrenador
 
-#Formulario hecho.
+
 
 '''
 Esta clase genera el formulario de registro de los pokemon. Al inicio de esta, se declaran las variables de los campos junto con su tipo de dato.
