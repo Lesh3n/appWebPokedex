@@ -58,16 +58,12 @@ class formulario_registro_pokemon(forms.ModelForm):
 
     def clean_dano_base(self):
         input_dano_base = self.cleaned_data['dano_base']
-        if len(input_dano_base) < 1:
-            raise forms.ValidationError("No se ha ingresado un numero de daño!")
         if input_dano_base != int(input_dano_base):
             raise forms.ValidationError("Te estoy pidiendo el daño en números, no letras -_-")
         return input_dano_base
 
     def clean_defensa_base(self):
         input_defensa_base = self.cleaned_data['defensa_base']
-        if len(input_defensa_base) < 1:
-            raise forms.ValidationError("No se ha ingresado un numero de defensa!")
         if input_defensa_base != int(input_defensa_base):
             raise forms.ValidationError("Te estoy pidiendo la defensa en números, no letras -_-")
         return input_defensa_base
@@ -122,26 +118,17 @@ class FormPokeMart(forms.ModelForm):
 
     def clean_precio(self):
         input_precio = self.cleaned_data['precio']
-        if len(input_precio) < 1:
-            raise forms.ValidationError("No se ha ingresado un precio!")
         if input_precio != int(input_precio):
             raise forms.ValidationError("El tipo de dato ingresado no corresponde a lo pedido!")
         return input_precio
 
     def clean_cantidad(self):
         input_cantidad = self.cleaned_data['cantidad']
-        if len(input_cantidad) < 1:
-            raise forms.ValidationError("No se ha ingresado una cantidad de producto!")
         if input_cantidad != str(input_cantidad):
             raise forms.ValidationError("Tipo de dato incorrecto, se espera un dato numerico.")
         return input_cantidad
 
 
-    def clean_fecha_compra(self):
-        input_fecha_compra = self.cleaned_data['fechaCompra']
-        if len(input_fecha_compra) < 10:
-            raise forms.ValidationError("Estás seguro que estás ingresando una fecha? Formato: AAAA-MM-DD")
-        return input_fecha_compra
 
 
 

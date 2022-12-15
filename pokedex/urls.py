@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 
 from pokemon import views
 
 
 
 urlpatterns = [
+    #URL API
+    path('api-auth/', include('rest_framework.urls')),
+    #URL ADMIN
     path('admin/', admin.site.urls),
     path('', views.listarAgregarPokemon),
     path('eliminarPkmn/<int:id>', views.eliminarPokemon),
