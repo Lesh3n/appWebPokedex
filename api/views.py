@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import *
+from .serializers import pokemon_serializer, pokemart_serializer, entrenador_serializer
 from .models import *
 from rest_framework.response import Response
 from rest_framework import status

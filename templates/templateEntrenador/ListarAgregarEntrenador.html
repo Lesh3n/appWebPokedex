@@ -24,22 +24,22 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/">Ver Pokémons</a>
                 </li>
-              <li class="nav-item">
+                <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="/listadoAgregarProducto">Ver Productos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/ListarAgregarEntrenador">Ver Entrenadores</a>
-              </li>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/ListarAgregarEntrenador">Ver Entrenadores</a>
+                </li>
               </ul>
             </div>
           </div>
         </nav>
       </div>
     <div>
-        <form method="post">
-            {{form.as_p}}
-            {% csrf_token %}
-            <input type="submit" value="Agregar" class="btn btn-primary text-center">
+        <form method="post" class="container mt-5">
+          {{form.as_div}}
+          {% csrf_token %}
+          <input type="submit" value="Agregar" class="btn btn-primary text-center">
         </form>
     </div>
     <div class="container mt-5">

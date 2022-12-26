@@ -142,7 +142,7 @@ class formulario_registro_entrenador(forms.ModelForm):
 
     class Meta:
         model = Entrenador
-        fields = '__all__'
+        fields = ['nombre','sexo','region','id_pokemon_favorito','id_objeto_mas_usado']
         
     nombre.widget.attrs['class'] = 'form-control'
     sexo.widget.attrs['class'] = 'form-control'
