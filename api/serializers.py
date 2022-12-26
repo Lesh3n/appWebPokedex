@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Pokemon, PokeMart, Entrenador
+from api.models import Pokemon, Pokemart, Entrenador
 
 class pokemon_serializer(serializers.ModelSerializer):
     class Meta:
@@ -9,7 +9,7 @@ class pokemon_serializer(serializers.ModelSerializer):
 
 class pokemart_serializer(serializers.ModelSerializer):
     class Meta:
-        model = PokeMart
+        model = Pokemart
         field = '__all__'
 
 

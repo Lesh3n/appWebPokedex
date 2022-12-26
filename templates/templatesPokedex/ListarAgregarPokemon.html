@@ -37,7 +37,7 @@
       </div>
     <div class="container mt-5">
         <form method="post">
-          {{form.as_p}}
+          {{form.as_div}}
           {% csrf_token %}
           <input type="submit" value="Agregar" class="btn btn-primary text-center">
         </form>
@@ -70,7 +70,7 @@
               <td>{{ pkmn.dano_base }}</td>
               <td>{{ pkmn.defensa_base }}</td>
               <td><a href="/actualizarPkmn/{{ pkmn.id }}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></td>
-                <td><a href="/eliminarPkmn/{{ pkmn.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></td>
+              <td><a href="/eliminarPkmn/{{ pkmn.id }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></td>
             </tr>
             {% endfor %}
           </tbody>

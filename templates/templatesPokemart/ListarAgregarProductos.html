@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <title>Document</title>
+    <title>INGRESAR OBJETO</title>
 </head>
 <body>
     <div id="navbar">
@@ -25,7 +25,7 @@
                   <a class="nav-link active" aria-current="page" href="/">Ver Pokémons</a>
                 </li>
               <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/listadoAgregarProducto/">Ver Productos</a>
+                  <a class="nav-link active" aria-current="page" href="/listadoAgregarProducto">Ver Productos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/ListarAgregarEntrenador">Ver Entrenadores</a>
@@ -35,39 +35,62 @@
           </div>
         </nav>
       </div>
-    <h1 class="text-center">Agrega un Producto!</h1>
-    <form method="post" class="text-center">
-        {{form.as_p}}
-        {% csrf_token %}
-        <input type="submit" value="Agregar" class="btn btn-primary text-center">
-    </form>
-    <table class="table table-hover">
-        <thead>
+    <div>
+        <form method="post" class="container mt-5">
+            {{form.as_div}}
+            {% csrf_token %}
+            <input type="submit" value="Agregar" class="btn btn-primary text-center">
+        </form>
+    </div>
+    <div class="container mt-5">
+        <div class="alert alert-success display-1 text-center">Bienvenido A al Mercado Pokemon</div>
+        {% if objeto %}
+        <table class="table table-striped">
+          <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Pantidad</th>
-                <th>Lugar</th>
-                <th>Tipo</th>
-                <th>FechaCompra</th>
+              <th>ID</th>
+              <th>Nombre Objeto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Lugar</th>
+              <th>Tipo de Objeto</th>
+              <th>Fecha de Compra</th>
             </tr>
-        </thead>
-        <tbody class="table-group-divider">
-        {% for objeto in pokemart %}
-        <tr>
-            <td>{{objeto.nombreObjeto}}</td>
-            <td>{{objeto.precio}}</td>
-            <td>{{objeto.cantidad}}</td>
-            <td>{{objeto.lugar}}</td>
-            <td>{{objeto.tipo}}</td>
-            <td>{{objeto.fechaCompra}}</td>
-            <td><a href="/eliminarProducto/{{ objeto.id }}" class="btnRojo">Eliminar<i class="bi bi-pencil"></i></td>
-            <td><a href="/actualizarProducto/{{ objeto.id }}" class="btnVerde">Actualizar<i class="bi bi-pencil"></i></td>
-        </tr>
-        {% endfor %}"
-    </tbody>
-    </table>
-
-    
+          </thead>
+          {% for objeto in objetos %}
+          <tbody>
+            <tr>
+              <td>{{objeto.id}}</td>
+              <td>{{objeto.nombre_objeto}}</td>
+              <td>{{objeto.precio}}</td>
+              <td>{{objeto.cantidad}}</td>
+              <td>{{objeto.lugar}}</td>
+              <td>{{objeto.tipo}}</td>
+              <td>{{objeto.fecha_compra}}</td>
+              <td>
+                <a href="/actualizarEntrenador/{{entrenador.id}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                <a href="/eliminarEntrenador/{{entrenador.id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+              </td>
+          </tbody>  
+          {% endfor %}
+        </table>
+        {% else %}
+        <div class="alert alert-primary" role="alert">
+          <strong>No hay Productos registrados :(</strong>
+        </div>
+        {% endif %}
+      </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script>    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" 
+    integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

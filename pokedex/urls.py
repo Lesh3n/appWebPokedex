@@ -19,6 +19,7 @@ from django.conf.urls import include
 
 from pokemon import views
 
+
 from api import views as apiView
 
 '''
@@ -26,13 +27,16 @@ TODO: Falta poner las urls correspondientes a la api.
 '''
 
 urlpatterns = [
-    #URL API
-    path('api-auth/', include('rest_framework.urls')),
-    #path('api-auth/', include('rest_framework.urls')),
-    #path('api-auth/', include('rest_framework.urls')),
-    #path('api-auth/', include('rest_framework.urls')),
+    #URLS API
+    path('apiPkmn/', apiView.ListaPokemon.as_view()),
+    path('apiPkmn/<int:pk>', apiView.DetallePokemon.as_view()),
+    path('apiEntrenador/', apiView.ListaEntrenador.as_view()),
+    path('apiEntrenador/<int:pk>', apiView.DetalleEntrenador.as_view()),
+    path('apiPokemart/', apiView.ListaPokemart.as_view()),
+    path('apiPokemart/<int:pk>', apiView.DetallePokemart.as_view()),
     #URL ADMIN
     path('admin/', admin.site.urls),
+    #URLS Pokemon
     path('', views.listarAgregarPokemon),
     path('eliminarPkmn/<int:id>', views.eliminarPokemon),
     path('actualizarPkmn/<int:id>', views.actualizarPokemon),
