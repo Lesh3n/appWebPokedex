@@ -34,6 +34,9 @@ class Pokemon(models.Model):
     dano_base = models.IntegerField(blank=False)
     defensa_base = models.IntegerField(blank=False)
 
+    def __str__(self):
+        return self.nombre
+
 
 '''
 Modelo Pokemart
@@ -46,6 +49,9 @@ class Pokemart(models.Model):
     lugar = models.CharField(max_length=50)
     tipo = models.CharField(max_length=50)
     fecha_compra = models.DateField()
+
+    def __str__(self):
+        return self.nombre_objeto
 
 
 
@@ -73,4 +79,7 @@ class Entrenador(models.Model):
     nombre_objeto_mas_usado = models.CharField(max_length=80, blank=False)
     id_pokemon_favorito = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
     nombre_pokemon_favorito = models.CharField(max_length=60, blank=False)
+
+    def __str__(self):
+        return self.nombre
 

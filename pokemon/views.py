@@ -91,19 +91,19 @@ View entrenadores
 
 def listar_agregar_entrenador(request):
     if request.method == "POST":
-        formulario = formulario_registro_entrenador(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-    formulario = formulario_registro_entrenador()
+        form = formulario_registro_entrenador(request.POST)
+        if form.is_valid():
+            form.save()
+    form = formulario_registro_entrenador()
     entrenador = Entrenador.objects.all()
     pokemon = Pokemon.objects.all()
     pokemart = Pokemart.objects.all()
     context = {
-        'formulario': formulario, 
+        'form': form, 
         'entrenador': entrenador,
         'pokemon' : pokemon,
         'pokemart' : pokemart
-        }
+    }
     return render(request, 'templateEntrenador/ListarAgregarEntrenador.html', context)
 
 
