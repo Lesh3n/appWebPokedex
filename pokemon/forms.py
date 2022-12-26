@@ -1,10 +1,8 @@
 from urllib import request
 from django import forms
-from pokemon.models import Pokemon
-from pokemon.models import PokeMart
-from pokemon.models import Entrenador
+from api.models import Pokemon, Pokemart, Entrenador
 
-#Formulario hecho.
+
 
 '''
 Esta clase genera el formulario de registro de los pokemon. Al inicio de esta, se declaran las variables de los campos junto con su tipo de dato.
@@ -96,20 +94,20 @@ class formulario_registro_pokemon(forms.ModelForm):
 '''
 Formulario de PokeMart
 '''
-class FormPokeMart(forms.ModelForm):
-    nombreObjeto = forms.CharField(min_length=3, max_length=50)
+class formulario_registro_pokemart(forms.ModelForm):
+    nombre_objeto = forms.CharField(min_length=3, max_length=50)
     precio = forms.IntegerField(min_value=1, max_value=100000)
     cantidad = forms.IntegerField(min_value=1, max_value=100000)
     lugar = forms.CharField(min_length=3, max_length=50)
     tipo = forms.CharField(min_length=3, max_length=50)
-    fechaCompra = forms.DateField()
+    fecha_compra = forms.DateField()
 
     class Meta:
-        model = PokeMart
+        model = Pokemart
         fields = '__all__'
 
     def clean_nombre(self):
-        input_nombre = self.cleaned_data['nombreObjeto']
+        input_nombre = self.cleaned_data['nombre_objeto']
         if len(input_nombre) < 1:
             raise forms.ValidationError("No se ha ingresado un nombre de Pokemon!")
         if input_nombre != str(input_nombre):
@@ -139,12 +137,12 @@ class formulario_registro_entrenador(forms.ModelForm):
     sexo = forms.CharField(max_length=1)
     region = forms.CharField(max_length=50)
     id_pokemon_favorito = Pokemon(id)
-    id_objeto_mas_usado = PokeMart(id)
+    id_objeto_mas_usado = Pokemart(id)
     
 
     class Meta:
         model = Entrenador
-        fields = ['nombre','sexo','region','id_pokemon_favorito','id_objeto_mas_usado']
+        fields = '__all__'
         
     nombre.widget.attrs['class'] = 'form-control'
     sexo.widget.attrs['class'] = 'form-control'

@@ -2,17 +2,20 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 #Modelos
-from pokemon.models import Pokemon
-from pokemon.models import PokeMart
-from pokemon.models import Entrenador
+from api.models import Pokemon, Pokemart, Entrenador
+
 
 #Formularios
-from pokemon.forms import formulario_registro_pokemon
-from pokemon.forms import FormPokeMart
-from pokemon.forms import formulario_registro_entrenador
+from pokemon.forms import formulario_registro_pokemon, formulario_registro_pokemart, formulario_registro_entrenador
+
 
 #Mensajes de error
 from django.contrib import messages
+
+'''
+TODO: EDITAR LAS VIEWS PARA QUE SE COMUNIQUEN CON EL VIEWS DE LA API Y QUE ESTA PUEDA HACER LOS GET
+POST, PUT Y DELETE.
+'''
 
 
 def listarAgregarPokemon(request):
@@ -53,28 +56,28 @@ Vistas de POKEMART
 '''
 
 def listadoAgregarProducto(request):
-    form = FormPokeMart()
     if request.method == 'POST':
-        form = FormPokeMart(request.POST)
+        form = formulario_registro_pokemart(request.POST)
         if form.is_valid():
             form.save()
-    form = FormPokeMart()
-    pokemart = PokeMart.objects.all()
+            messages.success(request, "Datos guardados exitosamente")
+    form = formulario_registro_pokemart()
+    pokemart = Pokemart.objects.all()
     context = {'form': form, 'pokemart': pokemart}
     return render(request, 'templatesPokemart/ListarAgregarProductos.html', context)
 
 
 def eliminarProducto(request, id):
-    productos = PokeMart.objects.get(id=id)
+    productos = Pokemart.objects.get(id=id)
     productos.delete()
     return redirect('/ListarAgregarProductos')
 
 
 def actualizarProducto(request, id):
-    productos = PokeMart.objects.get(id = id)
-    form = FormPokeMart(instance=productos)
+    productos = Pokemart.objects.get(id = id)
+    form = formulario_registro_pokemart(instance=productos)
     if request.method == 'POST':
-        form = FormPokeMart(request.POST, instance=productos)
+        form = formulario_registro_pokemart(request.POST, instance=productos)
         if form.is_valid():
             form.save()
         return redirect('/ListarAgregarProductos')
@@ -94,7 +97,7 @@ def listar_agregar_entrenador(request):
     formulario = formulario_registro_entrenador()
     entrenador = Entrenador.objects.all()
     pokemon = Pokemon.objects.all()
-    pokemart = PokeMart.objects.all()
+    pokemart = Pokemart.objects.all()
     context = {
         'formulario': formulario, 
         'entrenador': entrenador,

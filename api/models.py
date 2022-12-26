@@ -38,14 +38,14 @@ class Pokemon(models.Model):
 '''
 Modelo Pokemart
 '''
-class PokeMart(models.Model):
+class Pokemart(models.Model):
     id = models.AutoField(primary_key=True, blank=False)
-    nombreObjeto = models.CharField(max_length=50)
+    nombre_objeto = models.CharField(max_length=50)
     precio = models.IntegerField()
     cantidad = models.IntegerField()
     lugar = models.CharField(max_length=50)
     tipo = models.CharField(max_length=50)
-    fechaCompra = models.DateField()
+    fecha_compra = models.DateField()
 
 
 
@@ -69,7 +69,7 @@ class Entrenador(models.Model):
     nombre = models.CharField(max_length=50)
     sexo = models.CharField(max_length=1)
     Region = models.CharField(max_length=50, blank=False)
-    id_objeto_mas_usado = models.ForeignKey(PokeMart, on_delete=models.CASCADE)
+    id_objeto_mas_usado = models.ForeignKey(Pokemart, on_delete=models.CASCADE)
     nombre_objeto_mas_usado = models.CharField(max_length=80, blank=False)
     id_pokemon_favorito = models.ForeignKey(Pokemon, on_delete=models.CASCADE)
     nombre_pokemon_favorito = models.CharField(max_length=60, blank=False)
