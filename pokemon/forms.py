@@ -137,6 +137,7 @@ class formulario_registro_entrenador(forms.ModelForm):
     sexo = forms.CharField(max_length=1)
     region = forms.CharField(max_length=50)
     id_pokemon_favorito = Pokemon(id)
+    nombre_pokemon_favorito = Pokemon(nombre)
     id_objeto_mas_usado = Pokemart(id)
     
 

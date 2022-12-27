@@ -121,7 +121,7 @@ class DetallePokemart(APIView):
         return Response(serializer.data)
 
     def put(self, request, pk):
-        objeto = self.get_entrenador(pk)
+        objeto = self.get_objeto(pk)
         serializer = pokemart_serializer(objeto, data = request.data)
         if serializer.is_valid():
             serializer.save()
@@ -129,6 +129,6 @@ class DetallePokemart(APIView):
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
-        objeto = self.get_pokemart(pk)
+        objeto = self.get_objeto(pk)
         objeto.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
